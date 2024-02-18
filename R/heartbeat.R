@@ -1,8 +1,9 @@
-# install.packages("httr2")
-
 library(httr2)
 
-theIPaddress <- system("hostname -I", intern = TRUE) |>  strsplit(" ") |>  unlist() |>  (\(x) {x[1]})()
+theIPaddress <- system("hostname -I", intern = TRUE) |>
+  strsplit(" ") |>
+  unlist() |>
+  (\(x) {x[1]})()
 
 http_request <- request("https://niemannross.com")
 
