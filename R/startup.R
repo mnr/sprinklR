@@ -7,4 +7,6 @@ library(devtools)
 
 devtools::install_github("mnr/sprinklR")
 
-heartbeat.R
+create_waterByZone.R #create the matrix if necessary
+
+main_loop.R
