@@ -8,7 +8,7 @@ library(devtools)
 library(openmeteo)
 library(httr2)
 
-devtools::install_github("mnr/sprinklR")
+# devtools::install_github("mnr/sprinklR")
 
 create_waterByZone() #create the matrix if necessary
 
