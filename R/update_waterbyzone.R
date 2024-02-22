@@ -23,4 +23,6 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     waterByZone["rainfall", yearDay + index - 1] <-
       as.numeric(pdx_forecast[index, "daily_rain_sum"])
   }
+
+  return(waterByZone)
 }
