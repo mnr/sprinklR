@@ -15,7 +15,7 @@ send_heartbeat <- function() {
     (\(x) {x[1]})()
 
   # get uptime
-  last_reboot <- system("uptime -s")
+  reboot_datetime <- system("uptime -s")
 
   heartbeat_request <- request("https://niemannross.com")
 
@@ -23,7 +23,7 @@ send_heartbeat <- function() {
     req_url_path_append("sprinklR") |>
     req_url_path_append("heartbeat.php") |>
     req_url_query(iam = theIPaddress) |>
-    req_url_query(uptime = last_reboot)
+    req_url_query(last_reboot = reboot_datetime)
 
   http_response <- req_perform(http_request)
 }
