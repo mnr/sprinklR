@@ -13,10 +13,14 @@ update_waterbyzone <- function(waterByZone, yearDay) {
 
   # get rain forecast -------------------------------------------------------
 
-  pdx_forecast <- climate_forecast("Portland",
-                                   start = Sys.Date(),
-                                   end = Sys.Date() + 7,
-                                   daily = "rain_sum")
+  meteo_request <- request("https://api.open-meteo.com/v1/forecast") |>
+                   req_url_query(latitude = "45.5234") |>
+                   req_url_query(longitude = "-122.6762") |>
+                   req_url_query(daily = "rain_sum,precipitation_hours,precipitation_probability_max") |>
+                   req_url_query(past_days ="5")
+  meteo_response <- req_perform(meteo_request)
+  resp_body_json(meteo_response)
+
   # update waterByZone matrix --------
 
   for (index in 1:nrow(pdx_forecast["daily_rain_sum"])) {

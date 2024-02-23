@@ -2,10 +2,8 @@
 
 # install.packages("httr2")
 # install.packages("devtools")
-# install.packages("openmeteo")
 
 library(devtools)
-library(openmeteo)
 library(httr2)
 
 # devtools::install_github("mnr/sprinklR")
