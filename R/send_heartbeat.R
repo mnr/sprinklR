@@ -7,6 +7,7 @@
 #' @export
 #'
 #' @examples
+#'
 send_heartbeat <- function() {
   # get ip address
   theIPaddress <- system("hostname -I", intern = TRUE) |>

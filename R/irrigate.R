@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#'
 irrigate <- function(state, zone) {
   # zone #1 connected to GPIO17, board pin 11.
   # zone #2 connected to GPIO27, board pin 13.

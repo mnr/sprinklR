@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#'
 update_waterbyzone <- function(waterByZone, yearDay) {
 
   # get rain forecast -------------------------------------------------------
