@@ -26,7 +26,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
 
   # update waterByZone matrix --------
 
-  for (index in 1:nrow(pdx_forecast["daily_rain_sum"])) {
+  for (index in 1:nrow(meteo_response["daily_rain_sum"])) {
     waterByZone["rainfall", yearDay + index - 1] <-
       as.numeric(pdx_forecast[index, "daily_rain_sum"])
   }
