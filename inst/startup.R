@@ -3,7 +3,7 @@
 # install.packages("httr2")
 # install.packages("devtools")
 
-library(devtools)
+# library(devtools)
 library(httr2)
 library(sprinklR)
 
