@@ -5,6 +5,7 @@
 
 library(devtools)
 library(httr2)
+library(sprinklR)
 
 # devtools::install_github("mnr/sprinklR")
 
