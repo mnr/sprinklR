@@ -5,7 +5,6 @@
 
 library(devtools)
 library(httr2)
-library(sprinklR)
 
 # devtools::install_github("mnr/sprinklR")
 
@@ -17,7 +16,7 @@ waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 # January 1 = 0
 yearDay <- as.POSIXlt(Sys.Date())$yday
 
-waterByZone <- sprinklR::update_waterbyzone(waterByZone,yearDay) # update with current forecasts
+waterByZone <- update_waterbyzone(waterByZone,yearDay) # update with current forecasts
 
 saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
