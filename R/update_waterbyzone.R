@@ -3,14 +3,13 @@
 #' update waterByZone with current forecast
 #'
 #' @param waterByZone a matrix with zone requests and rain forecast
-#' @param yearDay the day of the year. January 1 = 1
 #'
 #' @return updated version of the waterByZone matrix
 #' @export
 #'
 #' @examples
 #'
-update_waterbyzone <- function(waterByZone, yearDay) {
+update_waterbyzone <- function(waterByZone) {
   # get rain forecast -------------------------------------------------------
   # https://open-meteo.com/
   meteo_response <-
@@ -26,18 +25,21 @@ update_waterbyzone <- function(waterByZone, yearDay) {
 
   # update waterByZone matrix --------
   # first, current precipitation
+  yearDay <- as.POSIXlt(meteo_response$current$time)$yday + 1
   waterByZone["rainfall",yearDay] <- meteo_response$current$precipitation
 
   # next, store forecast
-    for (index in 1:length(meteo_response$daily$time)) {
-      waterByZone["rainfall", yearDay + index] <-
+  for (index in 1:length(meteo_response$daily$time)) {
+    yearDay <- as.POSIXlt(meteo_response$daily$time[[index]])$yday + 1
+    # print(yearDay)
+    waterByZone["rainfall", yearDay] <-
       meteo_response$daily$precipitation_sum[[index]]
   }
 
   return(waterByZone)
 }
 
-# return values from meteo
+# sample return values from meteo
 # > meteo_response
 # $latitude
 # [1] 45.52874
