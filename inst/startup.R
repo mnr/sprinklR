@@ -20,7 +20,7 @@ waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 # January 1 = 1
 yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
-waterByZone <- update_waterbyzone(waterByZone,yearDay) # update with current forecasts
+waterByZone <- update_waterbyzone(waterByZone) # update with current forecasts
 
 saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
