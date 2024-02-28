@@ -10,6 +10,7 @@ library(rpigpior)
 
 # sprinklR_PAT <- "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"
 # devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
+# devtools::install_github("mnr/rpigpior")
 
 create_waterByZone() #create the matrix if necessary
 
@@ -30,9 +31,9 @@ saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
 irrigate(TRUE, 1) # turn on front yard
 irrigate(TRUE, 2) # turn on back yard
-Sys.sleep(100)
+Sys.sleep(5)
 irrigate(FALSE, 1) # turn off front yard
-Sys.sleep(100)
+Sys.sleep(5)
 irrigate(FALSE, 2) # turn off back yard
 
 # Send a heartbeat --------------------------------------------------------
