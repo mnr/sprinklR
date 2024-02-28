@@ -1,5 +1,7 @@
 # Send heartbeat ----------------------------------------------------------
-#' Title
+#' Send_heartbeat
+#'
+#' Let the web page know we are alive and working
 #'
 #' @param iam_to_send ip address of raspberry pi
 #'
@@ -16,11 +18,11 @@ send_heartbeat <- function() {
     (\(x) {x[1]})()
 
   # get uptime
-  reboot_datetime <- system("uptime -s")
+  reboot_datetime <- system("uptime -s", intern = TRUE)
 
   heartbeat_request <- request("https://niemannross.com")
 
-  http_request |>
+  heartbeat_request |>
     req_url_path_append("sprinklR") |>
     req_url_path_append("heartbeat.php") |>
     req_url_query(iam = theIPaddress) |>
