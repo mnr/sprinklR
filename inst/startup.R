@@ -6,6 +6,7 @@
 # library(devtools)
 library(httr2)
 library(sprinklR)
+library(rpigpior)
 
 # sprinklR_PAT <- "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"
 # devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
