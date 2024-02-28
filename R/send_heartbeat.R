@@ -22,7 +22,7 @@ send_heartbeat <- function() {
 
   heartbeat_request <- request("https://niemannross.com")
 
-  heartbeat_request |>
+  http_request <- heartbeat_request |>
     req_url_path_append("sprinklR") |>
     req_url_path_append("heartbeat.php") |>
     req_url_query(iam = theIPaddress) |>
