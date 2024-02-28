@@ -22,7 +22,6 @@ send_heartbeat <- function() {
 
   # convert waterByZone to json
   waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
-  waterByZone_asJson <- toJSON(waterByZone)
 
   heartbeat_request <- request("https://niemannross.com")
 
