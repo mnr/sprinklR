@@ -7,16 +7,16 @@
 library(httr2)
 library(sprinklR)
 
-sprinklR_PAT <- "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"
-devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
+# sprinklR_PAT <- "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"
+# devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
 
 create_waterByZone() #create the matrix if necessary
 
 waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 
 # get the day of the year
-# January 1 = 0
-yearDay <- as.POSIXlt(Sys.Date())$yday
+# January 1 = 1
+yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
 waterByZone <- update_waterbyzone(waterByZone,yearDay) # update with current forecasts
 
