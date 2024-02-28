@@ -20,13 +20,18 @@ send_heartbeat <- function() {
   # get uptime
   reboot_datetime <- system("uptime -s", intern = TRUE)
 
+  # convert waterByZone to json
+  waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
+  waterByZone_asJson <- toJSON(waterByZone)
+
   heartbeat_request <- request("https://niemannross.com")
 
   http_request <- heartbeat_request |>
     req_url_path_append("sprinklR") |>
     req_url_path_append("heartbeat.php") |>
     req_url_query(iam = theIPaddress) |>
-    req_url_query(last_reboot = reboot_datetime)
+    req_url_query(last_reboot = reboot_datetime) |>
+    req_body_json(waterByZone, digits = 4)
 
   http_response <- req_perform(http_request)
 }
