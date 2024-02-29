@@ -32,7 +32,7 @@ send_heartbeat <- function() {
                        last_reboot = reboot_datetime,
                        wbz_rainfall = waterByZone["rainfall",],
                        wbz_zone1 = waterByZone["neededInFront",],
-                       wbz_zone1 = waterByZone["neededInRear",]),
+                       wbz_zone2 = waterByZone["neededInRear",]),
                   digits = 4)
 
   http_response <- req_perform(http_request)
