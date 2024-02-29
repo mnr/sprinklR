@@ -27,12 +27,24 @@ create_waterByZone <- function(forceWrite = TRUE) {
     rainfallVector <- rep(0, 366)
 
     waterByZone <- matrix(
-      data = c(rainfallVector, irrigateVector, irrigateVector),
+      data = c(
+        rainfallVector,
+        irrigateVector,
+        irrigateVector,
+        c(rep(0, 366)),
+        c(rep(0, 366))
+      ),
       byrow = TRUE,
-      nrow = 3,
-      dimnames = list(c(
-        "rainfall", "neededInFront", "neededInRear"
-      ))
+      nrow = 5,
+      dimnames = list(
+        c(
+          "rainfall",
+          "neededInFront",
+          "neededInRear",
+          "wateredInFront",
+          "wateredInRear"
+        )
+      )
     )
 
     saveRDS(waterByZone, "waterByZone.RDS")
