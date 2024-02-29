@@ -12,20 +12,16 @@ library(rpigpior)
 # devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
 # devtools::install_github("mnr/rpigpior")
 
-create_waterByZone() #create the matrix if necessary
+create_waterByZone() #create a fresh copy of this matrix
 
 waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
-
-# get the day of the year
-# January 1 = 1
-# yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
 waterByZone <- update_waterbyzone(waterByZone) # update with current forecasts
 
 saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
 # Calculate needed irrigation ---------------------------------------------
-
+howMuchToWater()
 
 # Trigger irrigation ------------------------------------------------------
 
