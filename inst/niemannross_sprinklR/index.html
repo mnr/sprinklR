@@ -12,7 +12,45 @@
 <!doctype html>
 <html>
   <head>
-    <title>Use php in html</title>
+    <title>Status of Irrigation System</title>
+
+    <div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      datasets: [{
+        label: 'Rainfall',
+        data: [<?php $json_data["wbz_rainfall"] ?>],
+        borderWidth: 1
+      }, {
+          label: 'Zone One',
+          data: [<?php $json_data["wbz_zone1"] ?>],
+          borderWidth: 1
+      },{
+          label: 'Zone Two',
+          data: [<?php $json_data["wbz_zone2"] ?>],
+          borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
   </head>
   <body>
     <p><?php echo "Last heartbeat: " . date("Y-m-d H:i:s", $lastHeartBeat)?></p>
