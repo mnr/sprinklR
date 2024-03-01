@@ -4,12 +4,10 @@
 \alias{update_waterbyzone}
 \title{update waterByZone with current forecast}
 \usage{
-update_waterbyzone(waterByZone, yearDay)
+update_waterbyzone(waterByZone)
 }
 \arguments{
 \item{waterByZone}{a matrix with zone requests and rain forecast}
-
-\item{yearDay}{the day of the year. January 1 = 0}
 }
 \value{
 updated version of the waterByZone matrix

@@ -2,7 +2,7 @@
 % Please edit documentation in R/send_heartbeat.R
 \name{send_heartbeat}
 \alias{send_heartbeat}
-\title{Title}
+\title{Send_heartbeat}
 \usage{
 send_heartbeat()
 }
@@ -13,5 +13,5 @@ send_heartbeat()
 void
 }
 \description{
-Title
+Let the web page know we are alive and working
 }

@@ -4,16 +4,21 @@
 \alias{irrigate}
 \title{irrigate}
 \usage{
-irrigate(state, zone)
+irrigate(zone, duration)
 }
 \arguments{
-\item{state}{Logical. TRUE = on, FALSE = off}
-
 \item{zone}{numerical. 1 = front yard, 2 = back yard}
+
+\item{duration}{seconds of water for this zone}
 }
 \value{
 nothing
 }
 \description{
 Turns the irrigation system on and off
+}
+\details{
+This is a blocking function.
+  It will not return until the duration is complete.
+  duration must be greater than 30 seconds
 }

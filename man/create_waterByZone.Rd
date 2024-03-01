@@ -4,14 +4,21 @@
 \alias{create_waterByZone}
 \title{create_waterByZone}
 \usage{
-create_waterByZone()
+create_waterByZone(forceWrite = TRUE)
+}
+\arguments{
+\item{forceWrite}{logical, default = TRUE. Overwrite the existing waterByZone?}
 }
 \value{
 void
 }
 \description{
-Set up an initial matrix to track weather and watering
+Sets up an initial matrix to track weather and watering
 }
 \details{
 creates waterByZone.RDS on local file system
+1 inch (25.4 mm) of water per week
+Watering split over two sessions per week
+Last frost: March 15
+First frost: November 25
 }
