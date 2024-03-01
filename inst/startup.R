@@ -25,19 +25,14 @@ waterByZone <- howMuchToWater(waterByZone,yearDay)
 
 saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
-# convert mm^3 of water to seconds valves are open -----
-
-# irrigation tape produces .25 gph
-# milliliter/gallon = 3785.41
-# .25 gallon per hour = x milliliter per hour = 946.3 ml/hour
-# ml per hour = x ml per second = .262 ml/second
-
-mmWaterPerSecond <- .262
+conv_mm_to_duration()
 
 # Trigger irrigation ------------------------------------------------------
 
-irrigate(1,waterByZone["wateredInFront",yearDay]/mmWaterPerSecond) # turn on front yard
-irrigate(2,waterByZone["wateredInFront",yearDay]/mmWaterPerSecond) # turn on back yard
+irrigate(1, conv_mm_to_duration(waterByZone["wateredInFront",yearDay])) # turn on front yard
+irrigate(2, conv_mm_to_duration(waterByZone["wateredInFront",yearDay])) # turn on back yard
+# irrigate(1,waterByZone["wateredInFront",yearDay]/mmWaterPerSecond) # turn on front yard
+# irrigate(2,waterByZone["wateredInFront",yearDay]/mmWaterPerSecond) # turn on back yard
 
 # Send a heartbeat --------------------------------------------------------
 
