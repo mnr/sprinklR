@@ -26,26 +26,30 @@
 //'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
 
   new Chart(ctx, {
-    type: 'line',
     data: {
         labels: [<?php echo implode(", ", range(1,366)) ?>],
       datasets: [{
-        label: 'Rainfall',
-        data: [<?php echo implode(", ",$json_data["wbz_rainfall"]) ?>],
-        tension: 0.1
+            type: 'line',
+            label: 'Rainfall',
+        data: [<?php echo implode(", ",$json_data["wbz_rainfall"]) ?>]
+
       }, {
+          type: 'bar',
           label: 'Zone One needed',
-          data: [<?php echo implode(", ",$json_data["wbz_NeededZone1"]) ?>],
-        tension: 0.1      },{
+          data: [<?php echo implode(", ",$json_data["wbz_NeededZone1"]) ?>]
+      },{
+          type: 'bar',
           label: 'Zone Two needed',
-          data: [<?php echo implode(", ",$json_data["wbz_NeededZone2"]) ?>],
-        tension: 0.1      },{
+          data: [<?php echo implode(", ",$json_data["wbz_NeededZone2"]) ?>]
+     },{
+          type: 'line',
           label: 'Zone one watered',
-          data: [<?php echo implode(", ",$json_data["wbz_WateredZone1"]) ?>],
-        tension: 0.1      },{
+          data: [<?php echo implode(", ",$json_data["wbz_WateredZone1"]) ?>]
+      },{
+          type: 'line',
           label: 'Zone Two watered',
-          data: [<?php echo implode(", ",$json_data["wbz_WateredZone2"]) ?>],
-        tension: 0.1      }]
+          data: [<?php echo implode(", ",$json_data["wbz_WateredZone2"]) ?>]
+     }]
     },
     options: {
       scales: {
