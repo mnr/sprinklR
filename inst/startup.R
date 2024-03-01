@@ -25,8 +25,6 @@ waterByZone <- howMuchToWater(waterByZone,yearDay)
 
 saveRDS(waterByZone, "waterByZone.RDS") # save this update
 
-conv_mm_to_duration()
-
 # Trigger irrigation ------------------------------------------------------
 
 irrigate(1, conv_mm_to_duration(waterByZone["wateredInFront",yearDay])) # turn on front yard
