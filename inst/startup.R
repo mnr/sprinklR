@@ -14,7 +14,7 @@ library(rpigpior)
 
 yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
-create_waterByZone() #create a fresh copy of this matrix
+# create_waterByZone() #create a fresh copy of this matrix
 
 waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 
