@@ -18,7 +18,7 @@ create_waterByZone() #create a fresh copy of this matrix
 
 waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 
-waterByZone <- update_waterbyzone(waterByZone) # update with current forecasts
+waterByZone <- update_waterbyzone(waterByZone, yearDay) # update with current forecasts
 
 # Calculate needed irrigation ---------------------------------------------
 waterByZone <- howMuchToWater(waterByZone,yearDay)
