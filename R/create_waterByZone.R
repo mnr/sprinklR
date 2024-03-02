@@ -54,7 +54,7 @@ create_waterByZone <- function(forceWrite = TRUE) {
         secondsWateredRear
       ),
       byrow = TRUE,
-      nrow = 5,
+      nrow = 7,
       dimnames = list(
         c(
           "rainfall",
