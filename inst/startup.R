@@ -16,7 +16,7 @@ yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
 # create_waterByZone() #create a fresh copy of this matrix
 
-waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
+waterByZone <- readRDS("sprinklR/waterByZone.RDS") # retrieve zone watering matrix
 
 waterByZone <- update_waterbyzone(waterByZone, yearDay) # update with current forecasts
 
@@ -36,9 +36,9 @@ irrigate(2, waterRearSeconds) # turn on back yard
 waterByZone["secondsWateredInRear", yearDay] <- waterRearSeconds
 
 # save all of these calculations
-saveRDS(waterByZone, "waterByZone.RDS")
+saveRDS(waterByZone, "sprinklR/waterByZone.RDS")
 
 # Send a heartbeat --------------------------------------------------------
 
-send_heartbeat()
+send_heartbeat(waterByZone)
 
