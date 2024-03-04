@@ -3,14 +3,14 @@
 #'
 #' Let the web page know we are alive and working
 #'
-#' @param iam_to_send ip address of raspberry pi
+#' @param waterByZone A copy of the waterByZone matrix
 #'
 #' @return void
 #' @export
 #'
 #' @examples
 #'
-send_heartbeat <- function() {
+send_heartbeat <- function(waterByZone) {
   # get ip address
   theIPaddress <- system("hostname -I", intern = TRUE) |>
     strsplit(" ") |>
@@ -21,7 +21,7 @@ send_heartbeat <- function() {
   reboot_datetime <- system("uptime -s", intern = TRUE)
 
   # convert waterByZone to json
-  waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
+  # waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
 
   http_request <- request("https://niemannross.com") |>
     req_url_path_append("sprinklR") |>
