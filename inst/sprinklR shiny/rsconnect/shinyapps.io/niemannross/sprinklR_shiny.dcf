@@ -1,0 +1,12 @@
+name: sprinklR_shiny
+title: sprinklR_shiny
+username: niemannross
+account: niemannross
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11401607
+bundleId: 8329785
+url: https://niemannross.shinyapps.io/sprinklR_shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
