@@ -4,10 +4,10 @@
 \alias{send_heartbeat}
 \title{Send_heartbeat}
 \usage{
-send_heartbeat()
+send_heartbeat(waterByZone)
 }
 \arguments{
-\item{iam_to_send}{ip address of raspberry pi}
+\item{waterByZone}{A copy of the waterByZone matrix}
 }
 \value{
 void
