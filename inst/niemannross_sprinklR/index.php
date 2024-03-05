@@ -66,8 +66,7 @@
 
   <iframe src="https://github.com/sponsors/mnr/card" title="Sponsor mnr" height="225" width="600" style="border: 0;"></iframe>
 
-    <p><?php echo "Last heartbeat: " . date("Y-m-d H:i:s", $lastHeartBeat)?></p>
-    <p><?php echo "IP Address: " . $json_data["iam"] ?></p>
+    <p><?php echo "Last heartbeat: " . date("Y-m-d H:i:s", $lastHeartBeat) . ":" . $json_data["iam"]?></p>
     <p><?php echo "Last Reboot: " . $json_data["last_reboot"] ?></p>
     <p><?php echo "Day of Year: " . (date("z") + 1) ?></p>
 
