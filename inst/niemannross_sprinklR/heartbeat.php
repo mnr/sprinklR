@@ -4,7 +4,7 @@
   $json = file_get_contents('php://input');
 
   // add dateTime to json
-  $json_tmp = json_decode($json) ;
+  $json_tmp = json_decode($json, true) ;
   $json_tmp['modified'] = date("Y-m-d H:i:s") ;
   $json = json_encode($json_tmp) ;
 
