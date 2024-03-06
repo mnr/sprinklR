@@ -25,7 +25,8 @@ fluidPage(
     mainPanel(
       plotOutput("distPlot"),
       hr(),
-      textOutput("statusString")
+      textOutput("statusString"),
+      textOutput("statusString2")
     ) #end of mainPanel
  ) # end of sidebarLayout
 ) # end of fluidPage

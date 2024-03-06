@@ -13,9 +13,10 @@ library(jsonlite)
 # Define server logic required to draw a histogram
 function(input, output, session) {
   waterByZone = fromJSON("https://niemannross.com/sprinklR/heartbeat_data.json")
-  # output$iam <- renderText(waterByZone$iam)
-  # output$last_reboot <- renderText({paste("Last Reboot:",waterByZone$last_reboot)})
-  output$statusString <- renderText({paste("Last Reboot:",waterByZone$last_reboot, " at ", waterByZone$iam)})
+  output$statusString <- renderText({paste("Last Reboot:",waterByZone$last_reboot,
+                                           " at ", waterByZone$iam)})
+  output$statusString2 <- renderText({paste("Last heartbeat:",waterByZone$modified)})
+
     # output$last_heartbeat <-
 
   output$distPlot <- renderPlot({
@@ -26,6 +27,8 @@ function(input, output, session) {
       main = 'Sprinkler System Status',
       xlim = c(0, 366),
       space = 0,
+      density = 20,
+      angle = 135,
       col = 'green',
       border = NA
     )
@@ -34,10 +37,13 @@ function(input, output, session) {
       col = 'blue',
       border = NA,
       space = 0,
-      angle = 10,
+      angle = 45,
+      density = 20,
+      border = NA,
       add = TRUE
     )
     lines(waterByZone$wbz_rainfall, col = "red")
+    lines(waterByZone$wbz_evapotranspiration, col = "blue")
 
     axis(
       side = 1,
