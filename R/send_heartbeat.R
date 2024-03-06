@@ -34,7 +34,8 @@ send_heartbeat <- function(waterByZone) {
                        wbz_WateredZone1 = waterByZone["wateredInFront",],
                        wbz_WateredZone2 = waterByZone["wateredInRear",],
                        wbz_SecondsWateredZone1 = waterByZone["secondsWateredInFront",],
-                       wbz_SecondsWateredZone2 = waterByZone["secondsWateredInRear",]
+                       wbz_SecondsWateredZone2 = waterByZone["secondsWateredInRear",],
+                       wbz_evapotranspiration = waterByZone["evapotranspiration",]
     ),
                   digits = 4)
 
