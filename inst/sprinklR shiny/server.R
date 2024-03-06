@@ -35,7 +35,6 @@ function(input, output, session) {
     barplot(
       height = waterByZone$wbz_NeededZone2,
       col = 'blue',
-      border = NA,
       space = 0,
       angle = 45,
       density = 20,
