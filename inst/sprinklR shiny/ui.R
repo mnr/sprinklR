@@ -8,29 +8,24 @@
 #
 
 library(shiny)
-library(jsonlite)
 
-waterByZone=fromJSON("https://niemannross.com/sprinklR/heartbeat_data.json")
 
 # Define UI for application that draws a histogram
 fluidPage(
+  # Application title
+  titlePanel("Irrigation Status"),
 
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
+  #Sidebar with a slider input for number of bins
+  sidebarLayout(sidebarPanel(
+    radioButtons("showZones", h3("Show Zones"),
+                 choices = list("All Zones" = 1, "Zone 1" = 2,
+                                "Zone 2" = 3),selected = 1)
 
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
-    )
-)
+      ), # end of sidebarPanel
+    mainPanel(
+      plotOutput("distPlot"),
+      hr(),
+      textOutput("statusString")
+    ) #end of mainPanel
+ ) # end of sidebarLayout
+) # end of fluidPage

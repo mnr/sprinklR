@@ -20,7 +20,7 @@ create_waterByZone <- function(forceWrite = TRUE) {
   if (forceWrite) {
     # calculate last and first frost
     last_frost <- as.POSIXlt("2024-03-15")$yday + 1 # March 15
-    first_frost <- as.POSIXlt("2024-11-25")$yday + 1 # November 25
+    first_frost <- as.POSIXlt("2024-11-01")$yday + 1 # November 1
 
     # how much to water in each zone
     mmWaterPerWeek <-  25.4 # one inch per week = 25.4 mm
@@ -51,7 +51,8 @@ create_waterByZone <- function(forceWrite = TRUE) {
         c(rep(0, 366)),
         c(rep(0, 366)),
         secondsWateredFront,
-        secondsWateredRear
+        secondsWateredRear,
+        c(rep(0,366))
       ),
       byrow = TRUE,
       nrow = 7,
@@ -63,7 +64,8 @@ create_waterByZone <- function(forceWrite = TRUE) {
           "wateredInFront",
           "wateredInRear",
           "secondsWateredInFront",
-          "secondsWateredInRear"
+          "secondsWateredInRear",
+          "evapotranspiration"
         )
       )
     )
