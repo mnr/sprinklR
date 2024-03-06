@@ -18,7 +18,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     req_url_query(latitude = "45.5234") |>
     req_url_query(longitude = "-122.6762") |>
     req_url_query(current = "precipitation") |>
-    req_url_query(daily = "precipitation_sum,precipitation_probability_max") |>
+    req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
     req_perform() |>
     resp_body_json()
   # meteo_response$current$precipitation
@@ -26,13 +26,16 @@ update_waterbyzone <- function(waterByZone, yearDay) {
 
   # update waterByZone matrix --------
   # first, current precipitation
-  waterByZone["rainfall", yearDay] <- meteo_response$current$precipitation
+  # waterByZone["rainfall", yearDay] <- meteo_response$current$precipitation
+
 
   # next, store forecast
   for (index in 1:length(meteo_response$daily$time)) {
-    yearDayFloat <- as.POSIXlt(meteo_response$daily$time[[index]])$yday + 1
+    yearDayFloat <- as.POSIXlt(meteo_response$daily$time[[index]])$yday
     waterByZone["rainfall", yearDayFloat] <-
       meteo_response$daily$precipitation_sum[[index]]
+    waterByZone["evapotranspiration", yearDayFloat] <-
+      meteo_response$daily$et0_fao_evapotranspiration[[index]]
   }
 
   return(waterByZone)
