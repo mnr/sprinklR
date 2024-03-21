@@ -9,24 +9,41 @@
 
 library(shiny)
 
+#Define UI for application
 
-# Define UI for application that draws a histogram
-fluidPage(
-  # Application title
+fluidPage(# Application title
   titlePanel("Irrigation Status"),
 
   #Sidebar with a slider input for number of bins
-  sidebarLayout(sidebarPanel(
-    radioButtons("showZones", h3("Show Zones"),
-                 choices = list("All Zones" = 1, "Zone 1" = 2,
-                                "Zone 2" = 3),selected = 1)
-
-      ), # end of sidebarPanel
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("displayRange","Range of Days",
+                  min = 7, max = 366/2, value = 7,
+                  round = TRUE)
+    #   radioButtons(
+    #   "showZones",
+    #   h3("Show Zones"),
+    #   choices = list(
+    #     "All Zones" = 1,
+    #     "Zone 1" = 2,
+    #     "Zone 2" = 3
+    #   ),
+    #   selected = 1
+    # )
+    ), # end of sidebarPanel
     mainPanel(
-      plotOutput("distPlot"),
-      hr(),
-      textOutput("statusString"),
-      textOutput("statusString2")
-    ) #end of mainPanel
- ) # end of sidebarLayout
-) # end of fluidPage
+      tabsetPanel(
+        type = "pills",
+        tabPanel("MM of Water",
+                 plotOutput("mmOfWater"),
+                 textOutput("yearDay")),
+        tabPanel("Seconds", plotOutput("secondsOfWater")),
+        tabPanel("Status",
+                 textOutput("lastHeartbeat"),
+                 textOutput("lastReboot"),
+                 textOutput("location")
+                 )
+      )
+    ) # end of main panel
+  ) # end of sidebarLayout
+  ) # end of fluidPage
