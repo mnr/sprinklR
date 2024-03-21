@@ -61,6 +61,7 @@ function(input, output, session) {
       ylab = 'mm of water',
       main = 'Sprinkler System Status',
       xlim = c(1, (2 * input$displayRange)),
+      ylim = c(0, 20),
       space = 0,
       density = 20,
       angle = 135,
@@ -94,15 +95,18 @@ function(input, output, session) {
   })
 
   output$secondsOfWater <- renderPlot({
-    plot(x = waterByZone$wbz_SecondsWateredZone1,
-    #plot(x = waterByZone["secondsWateredInFront",]
+    startDayOfYear <- getStartDayOfYear(input$displayRange)
+    endDayOfYear <- getEndDayOfYear(input$displayRange)
+    trimmedWBZ <- trimDisplayRange(input$displayRange)
+
+    plot(x = trimmedWBZ["wbz_SecondsWateredZone1", ],
          ylab = 'seconds of water',
          xlab = NA,
          xaxt = "n",
          type = "l",
          col = "brown"
           )
-    lines(x = waterByZone$wbz_SecondsWateredZone2,
+    lines(x = trimmedWBZ["wbz_SecondsWateredZone2", ],
            col = "darkgoldenrod1"
      )
     # axis(
