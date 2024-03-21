@@ -20,20 +20,20 @@ function(input, output, session) {
   dayOfYear <- as.POSIXlt(Sys.Date())$yday + 1
   output$yearDay <- renderText(paste("Day of Year: ", dayOfYear))
 
-  getStartDayOfYear <- function() {
-    startDayOfYear <- dayOfYear - input$displayRange
+  getStartDayOfYear <- function(dispRange) {
+    startDayOfYear <- dayOfYear - dispRange
     return(ifelse(startDayOfYear < 0, 0, startDayOfYear))
   }
 
-  getEndDayOfYear <- function() {
-    endDayOfYear <- dayOfYear + input$displayRange
+  getEndDayOfYear <- function(dispRange) {
+    endDayOfYear <- dayOfYear + dispRange
     return(ifelse(endDayOfYear > 366, 366, endDayOfYear))
   }
 
-  trimDisplayRange <- function() {
+  trimDisplayRange <- function(dispRange) {
     # trim waterByZone according to input$displayRange
-    startDayOfYear <- getStartDayOfYear()
-    endDayOfYear <- getEndDayOfYear()
+    startDayOfYear <- getStartDayOfYear(dispRange)
+    endDayOfYear <- getEndDayOfYear(dispRange)
 
     trimmedWBZ <- rbind(waterByZone$wbz_rainfall,
                         waterByZone$wbz_NeededZone1,
@@ -50,19 +50,17 @@ function(input, output, session) {
     return(trimmedWBZ[ , startDayOfYear:endDayOfYear])
   }
 
-
-
   output$mmOfWater <- renderPlot({
-    trimmedWBZ <- trimDisplayRange()
-    startDayOfYear <- getStartDayOfYear()
-    endDayOfYear <- getEndDayOfYear()
+    startDayOfYear <- getStartDayOfYear(input$displayRange)
+    endDayOfYear <- getEndDayOfYear(input$displayRange)
+    trimmedWBZ <- trimDisplayRange(input$displayRange)
 
     # draw the barplot
     barplot(
       height = trimmedWBZ["wbz_NeededZone1", ],
       ylab = 'mm of water',
       main = 'Sprinkler System Status',
-      xlim = c(0, (2 * input$displayRange)),
+      xlim = c(1, (2 * input$displayRange)),
       space = 0,
       density = 20,
       angle = 135,
@@ -83,15 +81,15 @@ function(input, output, session) {
     lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", col = "brown")
     lines(trimmedWBZ["wbz_WateredZone2", ], lty = "twodash", col = "darkgoldenrod1")
 
-    axis(
-      side = 1,
-      at = floor(seq(
-        from = getStartDayOfYear(),
-        to = getEndDayOfYear(),
-        length.out = 13
-      )),
-      labels = c(month.abb, " ")
-    )
+    # axis(
+    #   side = 1,
+    #   at = floor(seq(
+    #     from = getStartDayOfYear(),
+    #     to = getEndDayOfYear(),
+    #     length.out = 13
+    #   )),
+    #   labels = c(month.abb, " ")
+    # )
 
   })
 
@@ -107,15 +105,15 @@ function(input, output, session) {
     lines(x = waterByZone$wbz_SecondsWateredZone2,
            col = "darkgoldenrod1"
      )
-    axis(
-      side = 1,
-      at = floor(seq(
-        from = getStartDayOfYear(),
-        to = getEndDayOfYear(),
-        length.out = 13
-      )),
-      labels = c(month.abb, " ")
-    )
+    # axis(
+    #   side = 1,
+    #   at = floor(seq(
+    #     from = getStartDayOfYear(),
+    #     to = getEndDayOfYear(),
+    #     length.out = 13
+    #   )),
+    #   labels = c(month.abb, " ")
+    #)
 
 
   })
