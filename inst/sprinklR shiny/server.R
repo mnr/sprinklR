@@ -82,6 +82,11 @@ function(input, output, session) {
     lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", col = "brown")
     lines(trimmedWBZ["wbz_WateredZone2", ], lty = "twodash", col = "darkgoldenrod1")
 
+    legend(x = "topright",
+           legend = c("Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
+           col = c("red", "blue", "brown", "darkgoldenrod1"),
+           lty = c("solid","solid","twodash","twodash"))
+
     # axis(
     #   side = 1,
     #   at = floor(seq(
