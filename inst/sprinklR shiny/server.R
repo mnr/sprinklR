@@ -17,7 +17,8 @@ function(input, output, session) {
   output$lastReboot <- renderText({paste("Last Reboot: ", waterByZone$last_reboot)})
   output$lastHeartbeat <- renderText({paste("Last Heartbeat: ",waterByZone$modified)})
   output$location <- renderText({paste("I am: ",waterByZone$iam)})
-  dayOfYear <- as.POSIXlt(Sys.Date())$yday + 1
+  dayOfYear <- as.POSIXlt(waterByZone$modified)$yday + 1
+  # as.POSIXlt(Sys.Date())$yday + 1
   output$yearDay <- renderText(paste("Day of Year: ", dayOfYear))
 
   getStartDayOfYear <- function(dispRange) {
