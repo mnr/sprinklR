@@ -77,15 +77,29 @@ function(input, output, session) {
       border = NA,
       add = TRUE
     )
+
     lines(trimmedWBZ["wbz_rainfall", ], col = "red")
+    #text()
+
     lines(trimmedWBZ["wbz_evapotranspiration", ], col = "blue")
-    lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", col = "brown")
-    lines(trimmedWBZ["wbz_WateredZone2", ], lty = "twodash", col = "darkgoldenrod1")
+    #text()
+
+    lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", lwd = 2, col = "brown")
+    #text()
+
+    lines(trimmedWBZ["wbz_WateredZone2", ], lty = "twodash", lwd = 2, col = "darkgoldenrod1")
+    #text()
 
     legend(x = "topright",
            legend = c("Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
            col = c("red", "blue", "brown", "darkgoldenrod1"),
-           lty = c("solid","solid","twodash","twodash"))
+           lty = c("solid","solid","twodash","twodash"),
+           lwd = c(1,1,2,2))
+
+   # todayLine <- (input$displayRange) + startDayOfYear
+    todayLine <- dayOfYear - startDayOfYear + .5
+    abline(v = todayLine)
+    text(x = todayLine + .1 + (strwidth("Today")/2), y = 18, labels = "Today")
 
     # axis(
     #   side = 1,
