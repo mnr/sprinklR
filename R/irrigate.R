@@ -19,9 +19,7 @@ irrigate <- function(zone, duration) {
   # zone #2 connected to GPIO27, board pin 13.
   zoneToPin <- c(11, 13)
 
-  if (duration > 30) {
     rpi_set(pin_number = zoneToPin[zone], onOff = 1)
     Sys.sleep(duration)
     rpi_set(pin_number = zoneToPin[zone], onOff = 0)
-  }
 }
