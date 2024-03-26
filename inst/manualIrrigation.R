@@ -1,6 +1,6 @@
 # Handle a request for manual irrigation
 
-# cron runs every 10 seconds
+# cron runs every minute
 # This program watches for a two way switch
 # position one turns on zone 1
 # position two turns on zone 2
