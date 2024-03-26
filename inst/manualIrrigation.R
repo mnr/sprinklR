@@ -12,10 +12,10 @@ library(rpigpior)
 zoneToPin <- c(15, 19)
 
 while(rpi_get(zoneToPin[1])) {
-    irrigate(1,1)
+    irrigate(1,30)
 }
 
 while(rpi_get(zoneToPin[2])) {
-  irrigate(2,1)
+  irrigate(2,30)
 }
 
