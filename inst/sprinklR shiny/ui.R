@@ -20,28 +20,19 @@ fluidPage(# Application title
       sliderInput("displayRange","Range of Days",
                   min = 7, max = 366/2, value = 7,
                   round = TRUE)
-    #   radioButtons(
-    #   "showZones",
-    #   h3("Show Zones"),
-    #   choices = list(
-    #     "All Zones" = 1,
-    #     "Zone 1" = 2,
-    #     "Zone 2" = 3
-    #   ),
-    #   selected = 1
-    # )
+
     ), # end of sidebarPanel
     mainPanel(
       tabsetPanel(
         type = "pills",
         tabPanel("MM of Water",
-                 plotOutput("mmOfWater"),
-                 textOutput("yearDay")),
+                 plotOutput("mmOfWater")),
         tabPanel("Seconds", plotOutput("secondsOfWater")),
         tabPanel("Status",
                  textOutput("lastHeartbeat"),
                  textOutput("lastReboot"),
-                 textOutput("location")
+                 textOutput("location"),
+                 textOutput("yearDay")
                  )
       )
     ) # end of main panel

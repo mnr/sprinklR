@@ -100,7 +100,11 @@ function(input, output, session) {
    # todayLine <- (input$displayRange) + startDayOfYear
     todayLine <- dayOfYear - startDayOfYear + .5
     abline(v = todayLine)
-    text(x = todayLine + .1 + (strwidth("Today")/2), y = 18, labels = "Today")
+    #text(x = todayLine + .1 + (strwidth("Today")/2),
+    text(x = todayLine - .1,
+         y = 18,
+         labels = "Today",
+         srt = 90)
 
     # axis(
     #   side = 1,
@@ -119,16 +123,37 @@ function(input, output, session) {
     endDayOfYear <- getEndDayOfYear(input$displayRange)
     trimmedWBZ <- trimDisplayRange(input$displayRange)
 
-    plot(x = trimmedWBZ["wbz_SecondsWateredZone1", ],
-         ylab = 'seconds of water',
-         xlab = NA,
-         xaxt = "n",
-         type = "l",
-         col = "brown"
-          )
-    lines(x = trimmedWBZ["wbz_SecondsWateredZone2", ],
-           col = "darkgoldenrod1"
-     )
+    barplot(
+      height = trimmedWBZ["wbz_SecondsWateredZone1", ],
+      ylab = 'seconds of water',
+      #main = 'Sprinkler System Status',
+      xlim = c(1, (2 * input$displayRange)),
+      #ylim = c(0, 20),
+      space = 0,
+      density = 20,
+      angle = 135,
+      col = 'cyan',
+      border = NA
+    )
+    barplot(
+      height = trimmedWBZ["wbz_SecondsWateredZone2", ],
+      col = 'magenta',
+      space = 0,
+      angle = 45,
+      density = 20,
+      border = NA,
+      add = TRUE
+    )
+    # plot(x = trimmedWBZ["wbz_SecondsWateredZone1", ],
+    #      ylab = 'seconds of water',
+    #      xlab = NA,
+    #      xaxt = "n",
+    #      type = "l",
+    #      col = "brown"
+    #       )
+    # lines(x = trimmedWBZ["wbz_SecondsWateredZone2", ],
+    #        col = "darkgoldenrod1"
+    #  )
     # axis(
     #   side = 1,
     #   at = floor(seq(
