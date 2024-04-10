@@ -29,8 +29,6 @@ howMuchToWater <- function(waterByZone, yearDay) {
   }
 
   # calculate needed water for rear zone
-  neededRain <- waterByZone["neededInRear", yearDay] - recentRainfall + recentEVOTRP
-  waterByZone["wateredInRear", yearDay] <- ifelse(neededRain <= 0, 0, neededRain)
   if (waterByZone["neededInRear", yearDay] > 0) {
     neededRain <- waterByZone["neededInRear", yearDay] - recentRainfall + recentEVOTRP
     waterByZone["wateredInRear", yearDay] <- ifelse(neededRain <= 0, 0, neededRain)
