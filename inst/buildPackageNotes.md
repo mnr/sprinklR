@@ -34,9 +34,13 @@ build_vignettes()
 
 build_site()
 
+# to update RPi
+devtools::install_github("mnr/sprinklR")
+devtools::install_github("mnr/rpigpior")
+
+
 # for cran submission
 use_release_issue()
 devtools::check(remote = TRUE, manual = TRUE)
 check_win_devel()
 submit_cran()
-
