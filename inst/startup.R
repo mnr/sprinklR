@@ -8,10 +8,6 @@ library(httr2)
 library(sprinklR)
 library(rpigpior)
 
-# source("inst/sprinklR_PAT.R")
-# devtools::install_github("mnr/sprinklR", auth_token = sprinklR_PAT)
-# devtools::install_github("mnr/rpigpior")
-
 yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
 # create_waterByZone() #create a fresh copy of this matrix
