@@ -19,7 +19,8 @@ fluidPage(# Application title
     sidebarPanel(
       sliderInput("displayRange","Range of Days",
                   min = 7, max = 366/2, value = 7,
-                  round = TRUE)
+                  round = TRUE),
+      p("Documentation located at https://niemannross.com/link/irrigation")
 
     ), # end of sidebarPanel
     mainPanel(
