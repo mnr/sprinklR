@@ -33,8 +33,17 @@
 #'
 #' @examples
 conv_mm_to_duration <- function(mmOfWater) {
-  mlOfWater <- mmOfWater * 254 * 254 *.001
-  secondsOpenValve <- mlOfWater / 64.51 * 252
+
+  emitterGPH <- .2 # emitters put out .2 gph
+  mm3_per_gallon <- 2.385e+6
+  emitter_mm3_hour <- emitterGPH * mm3_per_gallon
+  need_mm3_of_water <- mmOfWater^3
+  hoursOpenValve <- need_mm3_of_water / emitter_mm3_hour
+  secondsOpenValve <- hoursOpenValve * 60 * 60
+
+  # convert_mm3_to_ml <- 254 * 254 # 254 mm
+  # mlOfWater <- mmOfWater * 254 * 254 *.001
+  # secondsOpenValve <- mlOfWater / 64.51 * 252
 
   return(secondsOpenValve)
 }
