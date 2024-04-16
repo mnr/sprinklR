@@ -35,7 +35,7 @@
 conv_mm_to_duration <- function(mmOfWater) {
 
   emitterGPH <- .2 # emitters put out .2 gph
-  mm3_per_gallon <- 2.385e+6
+  mm3_per_gallon <- 3.785e+6
   emitter_mm3_hour <- emitterGPH * mm3_per_gallon
   need_mm3_of_water <- mmOfWater^3
   hoursOpenValve <- need_mm3_of_water / emitter_mm3_hour
