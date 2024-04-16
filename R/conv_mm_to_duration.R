@@ -1,30 +1,9 @@
-# convert mm of water to to seconds valves are open -----
-
-# recommendation is one inch of water per week
-# emitters are spaced every 10 inches and emit .25 gallons per hour
-# 1 inch of water with emitters spaced every 10 inches = 100 cubic inches of water
-# 100 cubic inches = 0.43 gallons
-# it will take one emitter 1.72 hours to emit 100 inches^3 (.43 gallons/.25 gph)
-
-# recommendation is 2.54 mm of water per week
-# emitters are spaced every 254 mm and emit 946 ml per hour
-# 2.54 mm of water with emitters spaced every 254 mm = 163.870 ml of water
-#       2.54 * 254 * 254 = 163870 mm^3. 1 mm^3 = .001 ml
-# it will take one emitter .173 hours to emit 163 ml of water
-# it will take one emitter 622 seconds to emit 163 ml of water
-
-# 1 mm of water with emitters spaced every 254 mm = 64.51 ml of water
-#       1 * 254 * 254 * .001
-# it will take one emitter .07 hours to emit 64.51 ml of water
-# it will take one emitter 252 seconds to emit 64.51 ml of water
 
 #' conv_mm_to_duration
 #'
 #' Converts mm of water to seconds to open valves
 #'
-#' emitters are spaced every 254 mm and emit 946 ml per hour
-#' 1 mm of water with emitters spaced every 254 mm = 64.51 ml of water
-#' it will take one emitter 252 seconds to emit 64.51 ml of water
+#' emitters are spaced every 254 mm and emit 946353 mm^3 per hour
 #'
 #' @param mmOfWater depth of desired water column
 #'
@@ -34,16 +13,18 @@
 #' @examples
 conv_mm_to_duration <- function(mmOfWater) {
 
-  emitterGPH <- .2 # emitters put out .2 gph
+  # convert GPH to mm3/second
+  emitterGPH <- .25 # emitters put out .25 gph
+  emitterGPsec <- emitterGPH / 60 / 60
   mm3_per_gallon <- 3.785e+6
-  emitter_mm3_hour <- emitterGPH * mm3_per_gallon
-  need_mm3_of_water <- mmOfWater^3
-  hoursOpenValve <- need_mm3_of_water / emitter_mm3_hour
-  secondsOpenValve <- hoursOpenValve * 60 * 60
+  emitter_mm3_sec <- emitterGPsec * mm3_per_gallon
 
-  # convert_mm3_to_ml <- 254 * 254 # 254 mm
-  # mlOfWater <- mmOfWater * 254 * 254 *.001
-  # secondsOpenValve <- mlOfWater / 64.51 * 252
+  # calculate the volume to be filled with water
+  emitterDistance_mm <- 254
+  volumeToFill <- mmOfWater * emitterDistance_mm * emitterDistance_mm
+
+  # how long to fill the volume with water?
+  secondsOpenValve <- volumeToFill / emitter_mm3_sec
 
   return(secondsOpenValve)
 }
