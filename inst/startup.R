@@ -9,7 +9,8 @@ library(sprinklR)
 library(rpigpior)
 
 sink(file = "/home/mnr/sprinklR/sprinklR_log.txt",
-     append = TRUE
+     append = TRUE,
+     type = "message"
      )
 
 logStatus <- function(theMessage) {
