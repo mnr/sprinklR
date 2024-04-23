@@ -8,7 +8,9 @@ library(httr2)
 library(sprinklR)
 library(rpigpior)
 
-sink(file = "/home/mnr/sprinklR/sprinklR_log.txt",
+sinkFile <- file("/home/mnr/sprinklR/sprinklR_log.txt", open = "wt")
+
+sink(file = sinkFile,
      append = TRUE,
      type = "message"
      )
