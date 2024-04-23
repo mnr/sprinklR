@@ -8,10 +8,12 @@ library(httr2)
 library(sprinklR)
 library(rpigpior)
 
+sink(file = "/home/mnr/sprinklR/sprinklR_log.txt",
+     append = TRUE
+     )
+
 logStatus <- function(theMessage) {
-  capture.output(paste(date(), theMessage),
-                 file = "/home/mnr/sprinklR/sprinklR_log.txt",
-                 append = TRUE)
+  print(paste(date(), theMessage))
 }
 
 logStatus("start of run")
@@ -49,3 +51,4 @@ saveRDS(waterByZone, "sprinklR/waterByZone.RDS")
 send_heartbeat(waterByZone)
 
 logStatus("end of run")
+sink()
