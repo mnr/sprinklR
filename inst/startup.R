@@ -12,13 +12,13 @@ sinkFile <- file("/home/mnr/sprinklR/sprinklR_log.txt", open = "at")
 
 sink(file = sinkFile,
      append = TRUE,
-     type = "message")
+     type = "message"
      )
 
 sink(file = sinkFile,
      append = TRUE,
-     type = "output")
-)
+     type = "output"
+     )
 
 logStatus <- function(theMessage) {
   print(paste(date(), theMessage))
