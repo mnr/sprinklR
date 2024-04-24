@@ -20,8 +20,8 @@ send_heartbeat <- function(waterByZone) {
   # get uptime
   reboot_datetime <- system("uptime -s", intern = TRUE)
 
-  # convert waterByZone to json
-  # waterByZone <- readRDS("waterByZone.RDS") # retrieve zone watering matrix
+  # retrieve the log file
+  sprinklR_logfile <- tail(read.delim("/home/mnr/sprinklR/sprinklR_log.txt", header=FALSE))
 
   http_request <- request("https://niemannross.com") |>
     req_url_path_append("sprinklR") |>
@@ -35,8 +35,9 @@ send_heartbeat <- function(waterByZone) {
                        wbz_WateredZone2 = waterByZone["wateredInRear",],
                        wbz_SecondsWateredZone1 = waterByZone["secondsWateredInFront",],
                        wbz_SecondsWateredZone2 = waterByZone["secondsWateredInRear",],
-                       wbz_evapotranspiration = waterByZone["evapotranspiration",]
-    ),
+                       wbz_evapotranspiration = waterByZone["evapotranspiration",],
+                       logfile = sprinklR_logfile
+                       ),
                   digits = 4)
 
   http_response <- req_perform(http_request)
