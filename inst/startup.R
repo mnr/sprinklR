@@ -52,7 +52,7 @@ irrigate(2, waterRearSeconds) # turn on back yard
 waterByZone["secondsWateredInRear", yearDay] <- waterRearSeconds
 
 # save all of these calculations
-saveRDS(waterByZone, "sprinklR/waterByZone.RDS")
+saveRDS(waterByZone, "/home/mnr/sprinklR/waterByZone.RDS")
 
 # Send a heartbeat --------------------------------------------------------
 
