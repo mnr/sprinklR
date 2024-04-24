@@ -44,3 +44,5 @@ use_release_issue()
 devtools::check(remote = TRUE, manual = TRUE)
 check_win_devel()
 submit_cran()
+
+
