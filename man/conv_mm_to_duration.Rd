@@ -16,7 +16,5 @@ Seconds to open valve based on above assumptions
 Converts mm of water to seconds to open valves
 }
 \details{
-emitters are spaced every 254 mm and emit 946 ml per hour
-1 mm of water with emitters spaced every 254 mm = 64.51 ml of water
-it will take one emitter 252 seconds to emit 64.51 ml of water
+emitters are spaced every 254 mm and emit 946353 mm^3 per hour
 }
