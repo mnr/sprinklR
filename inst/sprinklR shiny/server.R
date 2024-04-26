@@ -1,11 +1,3 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 
 library(shiny)
 library(jsonlite)
@@ -20,6 +12,7 @@ function(input, output, session) {
   dayOfYear <- as.POSIXlt(waterByZone$modified)$yday + 1
   # as.POSIXlt(Sys.Date())$yday + 1
   output$yearDay <- renderText(paste("Day of Year: ", dayOfYear))
+  output$logfile <- renderText({paste("Logfile: ",waterByZone$logfile)})
 
   getStartDayOfYear <- function(dispRange) {
     startDayOfYear <- dayOfYear - dispRange
@@ -106,15 +99,6 @@ function(input, output, session) {
          labels = "Today",
          srt = 90)
 
-    # axis(
-    #   side = 1,
-    #   at = floor(seq(
-    #     from = getStartDayOfYear(),
-    #     to = getEndDayOfYear(),
-    #     length.out = 13
-    #   )),
-    #   labels = c(month.abb, " ")
-    # )
 
   })
 
@@ -144,25 +128,6 @@ function(input, output, session) {
       border = NA,
       add = TRUE
     )
-    # plot(x = trimmedWBZ["wbz_SecondsWateredZone1", ],
-    #      ylab = 'seconds of water',
-    #      xlab = NA,
-    #      xaxt = "n",
-    #      type = "l",
-    #      col = "brown"
-    #       )
-    # lines(x = trimmedWBZ["wbz_SecondsWateredZone2", ],
-    #        col = "darkgoldenrod1"
-    #  )
-    # axis(
-    #   side = 1,
-    #   at = floor(seq(
-    #     from = getStartDayOfYear(),
-    #     to = getEndDayOfYear(),
-    #     length.out = 13
-    #   )),
-    #   labels = c(month.abb, " ")
-    #)
 
 
   })

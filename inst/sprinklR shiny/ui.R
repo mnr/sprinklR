@@ -33,7 +33,8 @@ fluidPage(# Application title
                  textOutput("lastHeartbeat"),
                  textOutput("lastReboot"),
                  textOutput("location"),
-                 textOutput("yearDay")
+                 textOutput("yearDay"),
+                 textOutput("logfile")
                  )
       )
     ) # end of main panel
