@@ -16,5 +16,6 @@ updated WaterByZone
 }
 \description{
 compares rainfall from yesterday, today, and tomorrow
-   against today's needed rainfall
+   minus evapotranspiration
+   against today's needed amount of water
 }
