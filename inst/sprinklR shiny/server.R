@@ -55,7 +55,7 @@ function(input, output, session) {
       ylab = 'mm of water',
       main = 'Sprinkler System Status',
       xlim = c(1, (2 * input$displayRange)),
-      ylim = c(0, 20),
+      ylim = c(-10, 20),
       space = 0,
       density = 20,
       angle = 135,
@@ -75,7 +75,7 @@ function(input, output, session) {
     lines(trimmedWBZ["wbz_rainfall", ], col = "red")
     #text()
 
-    lines(trimmedWBZ["wbz_evapotranspiration", ], col = "blue")
+    lines(-(trimmedWBZ["wbz_evapotranspiration", ]), col = "blue")
     #text()
 
     lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", lwd = 2, col = "brown")
