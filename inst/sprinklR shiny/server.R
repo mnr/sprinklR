@@ -12,7 +12,11 @@ function(input, output, session) {
   dayOfYear <- as.POSIXlt(waterByZone$modified)$yday + 1
   # as.POSIXlt(Sys.Date())$yday + 1
   output$yearDay <- renderText(paste("Day of Year: ", dayOfYear))
-  output$logfile <- renderText({paste("Logfile: ",waterByZone$logfile)})
+  # output$logfile <- renderText({paste(waterByZone$logfile)})
+  logPrint <- paste(waterByZone$logfile$V1,'<br/>')
+  output$logfile <- renderUI({
+    HTML(logPrint)
+  })
 
   getStartDayOfYear <- function(dispRange) {
     startDayOfYear <- dayOfYear - dispRange
