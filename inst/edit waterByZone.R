@@ -6,6 +6,9 @@
 # retrieve zone watering matrix
 waterByZone <- readRDS("~/Downloads/waterByZone.RDS")
 
+last_frost <- as.POSIXlt("2024-03-15")$yday + 1 # March 15
+first_frost <- as.POSIXlt("2024-11-01")$yday + 1 # November 1
+
 # edit the needed water by zone
 # how much to water in each zone
 mmWaterPerWeek <-  25.4 # one inch per week = 25.4 mm
