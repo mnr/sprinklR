@@ -22,4 +22,5 @@ irrigate <- function(zone, duration) {
     rpi_set(pin_number = zoneToPin[zone], onOff = 1)
     Sys.sleep(duration)
     rpi_set(pin_number = zoneToPin[zone], onOff = 0)
+    return(NULL)
 }
