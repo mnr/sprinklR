@@ -59,7 +59,7 @@ function(input, output, session) {
       ylab = 'mm of water',
       main = 'Sprinkler System Status',
       xlim = c(1, (2 * input$displayRange)),
-      ylim = c(-10, 20),
+      ylim = c(-10, 30),
       space = 0,
       density = 20,
       angle = 135,
@@ -89,10 +89,10 @@ function(input, output, session) {
     #text()
 
     legend(x = "topright",
-           legend = c("Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
-           col = c("red", "blue", "brown", "darkgoldenrod1"),
-           lty = c("solid","solid","twodash","twodash"),
-           lwd = c(1,1,2,2))
+           legend = c("Front Needs","Rear Needs","Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
+           col = c("cyan","magenta","red", "blue", "brown", "darkgoldenrod1"),
+           lty = c("solid","solid","solid","solid","twodash","twodash"),
+           lwd = c(3,3,1,1,2,2))
 
    # todayLine <- (input$displayRange) + startDayOfYear
     todayLine <- dayOfYear - startDayOfYear + .5
