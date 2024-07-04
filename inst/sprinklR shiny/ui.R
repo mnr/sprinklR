@@ -35,7 +35,8 @@ fluidPage(# Application title
                  textOutput("location"),
                  textOutput("yearDay"),
                  htmlOutput("logfile")
-                 )
+                 ),
+        tabPanel("Raw Data", tableOutput("rawData"))
       )
     ) # end of main panel
   ) # end of sidebarLayout

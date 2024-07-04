@@ -135,6 +135,11 @@ function(input, output, session) {
 
 
   })
+  output$rawData <- renderTable({
+    trimDisplayRange(input$displayRange)},
+    rownames = TRUE
+  )
+
 
 
 }
