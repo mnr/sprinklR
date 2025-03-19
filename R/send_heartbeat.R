@@ -21,7 +21,7 @@ send_heartbeat <- function(waterByZone) {
   reboot_datetime <- system("uptime -s", intern = TRUE)
 
   # retrieve the log file
-  sprinklR_logfile <- tail(read.delim("/home/mnr/sprinklR/sprinklR_log.txt", header=FALSE))
+  sprinklR_logfile <- tail(read.delim("/home/mnr/sprinklR/sprinklR_log.txt", header=FALSE), n = 25)
 
   http_request <- request("https://niemannross.com") |>
     req_url_path_append("sprinklR") |>
