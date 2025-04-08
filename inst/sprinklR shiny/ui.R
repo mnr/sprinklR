@@ -28,6 +28,7 @@ fluidPage(# Application title
         type = "pills",
         tabPanel("MM of Water",
                  plotOutput("mmOfWater")),
+        tabPanel("Legend", imageOutput("legendExplain")),
         tabPanel("Seconds", plotOutput("secondsOfWater")),
         tabPanel("Status",
                  textOutput("lastHeartbeat"),

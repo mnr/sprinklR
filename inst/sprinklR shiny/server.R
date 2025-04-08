@@ -55,44 +55,40 @@ function(input, output, session) {
 
     # draw the barplot
     barplot(
-      height = trimmedWBZ["wbz_NeededZone1", ],
-      ylab = 'mm of water',
+      height = matrix(c(
+                        trimmedWBZ["wbz_evapotranspiration", ],
+                        trimmedWBZ["wbz_NeededZone1", ],
+                        trimmedWBZ["wbz_NeededZone2", ]
+                        ),
+                 nrow = 3,
+                 byrow = TRUE,
+      ),
+      ylab = 'Needed mm of water',
       main = 'Sprinkler System Status',
-      xlim = c(1, (2 * input$displayRange)),
-      ylim = c(-10, 30),
+      xlim = c(1, (2*input$displayRange)),
+      ylim = c(-5,30),
       space = 0,
       density = 20,
-      angle = 135,
-      col = 'cyan',
-      border = NA
-    )
-    barplot(
-      height = trimmedWBZ["wbz_NeededZone2", ],
-      col = 'magenta',
-      space = 0,
-      angle = 45,
-      density = 20,
+      angle = c(135,45),
+      col = c('white','cyan','magenta'),
       border = NA,
-      add = TRUE
+      width = 1
     )
 
     lines(trimmedWBZ["wbz_rainfall", ], col = "red")
-    #text()
 
-    lines(-(trimmedWBZ["wbz_evapotranspiration", ]), col = "blue")
-    #text()
+    lines(trimmedWBZ["wbz_evapotranspiration", ], col = "blue")
 
-    lines(trimmedWBZ["wbz_WateredZone1", ], lty = "twodash", lwd = 2, col = "brown")
-    #text()
+    lines(trimmedWBZ["wbz_WateredZone1", ], type = "p",  pch = 15, lwd = 2, col = "cyan")
 
-    lines(trimmedWBZ["wbz_WateredZone2", ], lty = "twodash", lwd = 2, col = "darkgoldenrod1")
-    #text()
+    lines(trimmedWBZ["wbz_WateredZone2", ], type = "p",  pch = 17, lwd = 2, col = "magenta")
 
-    legend(x = "topright",
-           legend = c("Front Needs","Rear Needs","Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
-           col = c("cyan","magenta","red", "blue", "brown", "darkgoldenrod1"),
-           lty = c("solid","solid","solid","solid","twodash","twodash"),
-           lwd = c(3,3,1,1,2,2))
+    # legend(x = "bottom",
+    #        legend = c("Front Needs","Rear Needs","Rainfall", "Evapotranspiration", "Watered Zone 1", "Watered Zone 2"),
+    #        col = c("cyan","magenta","red", "blue", "brown", "darkgoldenrod1"),
+    #        lty = c("solid","solid","solid","solid","twodash","twodash"),
+    #        #pch = c("solid","solid","solid","solid","twodash","twodash"),
+    #        lwd = c(3,3,1,1,2,2))
 
    # todayLine <- (input$displayRange) + startDayOfYear
     todayLine <- dayOfYear - startDayOfYear + .5
@@ -105,6 +101,14 @@ function(input, output, session) {
 
 
   })
+
+  legendimg <- download.file("https://niemannross.com/wp-content/uploads/2018/08/cropped-mnr-in-japan-smaller.jpg",
+                             destfile = "tmpLegend")
+
+  output$legendExplain <- renderImage({legendimg <- download.file("https://raw.githubusercontent.com/wiki/mnr/sprinklR/photos/sprinklrLegend.png",
+                                                                  destfile = "tmpLegend")
+                                        list(src = "tmpLegend", alt = "an image")},
+                                      deleteFile = TRUE)
 
   output$secondsOfWater <- renderPlot({
     startDayOfYear <- getStartDayOfYear(input$displayRange)
