@@ -72,8 +72,13 @@ function(input, output, session) {
       angle = c(135,45),
       col = c('white','cyan','magenta'),
       border = NA,
-      width = 1
+      width = 1,
+      #legend.text = c("Evapo","Needed Front", "Needed Back"),
     )
+
+    axis(side = 1,
+         at = 0:(2*input$displayRange),
+         labels = startDayOfYear:endDayOfYear)
 
     lines(trimmedWBZ["wbz_rainfall", ], col = "red")
 
@@ -91,7 +96,7 @@ function(input, output, session) {
     #        lwd = c(3,3,1,1,2,2))
 
    # todayLine <- (input$displayRange) + startDayOfYear
-    todayLine <- dayOfYear - startDayOfYear + .5
+    todayLine <- dayOfYear - startDayOfYear
     abline(v = todayLine)
     #text(x = todayLine + .1 + (strwidth("Today")/2),
     text(x = todayLine - .1,
