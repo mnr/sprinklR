@@ -13,14 +13,16 @@
 update_waterbyzone <- function(waterByZone, yearDay) {
   # get rain forecast -------------------------------------------------------
   # https://open-meteo.com/
-  meteo_response <-
-    request("https://api.open-meteo.com/v1/forecast") |>
-    req_url_query(latitude = "45.5234") |>
-    req_url_query(longitude = "-122.6762") |>
-    req_url_query(current = "precipitation") |>
-    req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
-    req_perform() |>
-    resp_body_json()
+  try(
+    meteo_response <-
+     request("https://api.open-meteo.com/v1/forecast") |>
+     req_url_query(latitude = "45.5234") |>
+     req_url_query(longitude = "-122.6762") |>
+     req_url_query(current = "precipitation") |>
+     req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
+     req_retry(retry_on_failure = TRUE) |>
+     req_perform() |>
+     resp_body_json()
   # meteo_response$current$precipitation
   # meteo_response$daily$precipitation_sum[[1]]
 
@@ -37,7 +39,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     waterByZone["evapotranspiration", yearDayFloat] <-
       meteo_response$daily$et0_fao_evapotranspiration[[index]]
   }
-
+  )
   return(waterByZone)
 }
 
