@@ -1,6 +1,6 @@
 # tools to edit waterByZone.RDS
 # obtain a fresh copy by...
-# 1) Open a terminal to the Raspberry Pi
+# 1) Open a terminal to the Raspberry Pi (https://github.com/mnr/sprinklR/wiki/code)
 # 2) Use scp mnr@10.0.0.252:~/sprinklR/waterByZone.RDS Downloads
 
 # retrieve zone watering matrix
