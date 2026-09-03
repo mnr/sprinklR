@@ -2,8 +2,8 @@
 
 # install.packages("httr2")
 # install.packages("devtools")
+# install.packages("rpigpior")
 
-# library(devtools)
 library(httr2)
 library(sprinklR)
 library(rpigpior)
