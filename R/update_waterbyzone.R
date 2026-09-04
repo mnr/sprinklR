@@ -21,7 +21,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
      req_url_query(current = "precipitation") |>
      req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
      req_retry(retry_on_failure = TRUE,
-               max_tries = 4)
+               max_tries = 10)
 
     try(
       req_perform(meteo_response) |>
