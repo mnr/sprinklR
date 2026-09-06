@@ -43,7 +43,8 @@ send_heartbeat <- function(waterByZone) {
                        wbz_evapotranspiration = waterByZone["evapotranspiration",],
                        logfile = sprinklR_logfile
                        ),
-                  digits = 4)
+                  digits = 4) |>
+    req_retry(retry_on_failure = TRUE, max_tries = 4)
 
   http_response <- req_perform(http_request)
 }
