@@ -26,11 +26,11 @@ send_heartbeat <- function(waterByZone) {
   # fixing curl failure: https://forum.posit.co/t/httr2-request-fails-ok-in-browser/197965/2
 
   http_request <- request("https://niemannross.com") |>
+    req_url_path_append("sprinklR") |>
+    req_url_path_append("heartbeat.php") |>
     req_user_agent("Mozilla/5.0") |>
     req_headers("Accept-Encoding" = "identity") |>
     req_headers("Connection" = "Keep-Alive") |>
-    req_url_path_append("sprinklR") |>
-    req_url_path_append("heartbeat.php") |>
     req_body_json(list(iam = theIPaddress,
                        last_reboot = reboot_datetime,
                        wbz_rainfall = waterByZone["rainfall",],
