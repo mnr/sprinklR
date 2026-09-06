@@ -21,15 +21,15 @@ send_heartbeat <- function(waterByZone) {
   reboot_datetime <- system("uptime -s", intern = TRUE)
 
   # retrieve the log file
-  sprinklR_logfile <- tail(read.delim("/home/mnr/sprinklR/sprinklR_log.txt", header=FALSE), n = 25)
+  sprinklR_logfile <- tail(read.delim("/home/mnr/sprinklR/sprinklR_log.txt", header = FALSE), n = 25)
 
   # fixing curl failure: https://forum.posit.co/t/httr2-request-fails-ok-in-browser/197965/2
 
   http_request <- request("https://niemannross.com") |>
-    req_url_path_append("sprinklR") |>
     req_user_agent("Mozilla/5.0") |>
     req_headers("Accept-Encoding" = "identity") |>
     req_headers("Connection" = "Keep-Alive") |>
+    req_url_path_append("sprinklR") |>
     req_url_path_append("heartbeat.php") |>
     req_body_json(list(iam = theIPaddress,
                        last_reboot = reboot_datetime,
