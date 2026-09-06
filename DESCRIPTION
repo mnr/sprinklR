@@ -3,7 +3,7 @@ Type: Package
 Title: Runs My Irrigation System
 Version: 0.1.0
 Author: Mark Niemann-Ross
-Maintainer: mark.niemannross@gmail.com
+Maintainer: Mark Niemann-Ross <mark.niemannross@gmail.com>
 Description: Uses R to run an irrigation system
 License: What license is it under?
 Encoding: UTF-8
