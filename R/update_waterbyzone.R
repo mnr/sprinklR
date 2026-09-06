@@ -15,7 +15,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
   # https://open-meteo.com/
   # fixing curl failure: https://forum.posit.co/t/httr2-request-fails-ok-in-browser/197965/2
 
-  meteo_response <-
+  meteo_request <-
     request("https://api.open-meteo.com/v1/forecast") |>
     req_user_agent("Mozilla/5.0") |>
     req_headers("Accept-Encoding" = "identity") |>
@@ -27,7 +27,7 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     req_retry(retry_on_failure = TRUE, max_tries = 4)
 
     try(
-      req_perform(meteo_response) |>
+      meteo_response <- req_perform(meteo_request) |>
       resp_body_json()
     )
 
