@@ -28,9 +28,11 @@ logStatus("start of run")
 
 yearDay <- as.POSIXlt(Sys.Date())$yday + 1
 
-# create_waterByZone() #create a fresh copy of this matrix
+logStatus(paste("Day of year is",yearDay))
 
 waterByZone <- readRDS("/home/mnr/sprinklR/waterByZone.RDS") # retrieve zone watering matrix
+
+logStatus("Update waterByZone")
 
 waterByZone <- update_waterbyzone(waterByZone, yearDay) # update with current forecasts
 
@@ -44,18 +46,21 @@ logStatus("Start of front zone water")
 waterFrontSeconds <- conv_mm_to_duration(waterByZone["wateredInFront",yearDay])
 irrigate(1, waterFrontSeconds) # turn on front yard
 waterByZone["secondsWateredInFront", yearDay] <- waterFrontSeconds
+logStatus("End of front zone water")
 
 # water in rear
 logStatus("Start of rear zone water")
 waterRearSeconds <- conv_mm_to_duration(waterByZone["wateredInRear",yearDay])
 irrigate(2, waterRearSeconds) # turn on back yard
 waterByZone["secondsWateredInRear", yearDay] <- waterRearSeconds
+logStatus("End of rear zone water")
 
 # save all of these calculations
 saveRDS(waterByZone, "/home/mnr/sprinklR/waterByZone.RDS")
 
 # Send a heartbeat --------------------------------------------------------
 
+logStatus("Send a heartbeat")
 send_heartbeat(waterByZone)
 
 logStatus("end of run")
