@@ -15,6 +15,8 @@ update_waterbyzone <- function(waterByZone, yearDay) {
   # https://open-meteo.com/
   # fixing curl failure: https://forum.posit.co/t/httr2-request-fails-ok-in-browser/197965/2
 
+  # trimmed meteo request
+  # https://api.open-meteo.com/v1/forecast?latitude=45.5234&longitude=-122.676222&daily=precipitation_sum,et0_fao_evapotranspiration&timezone=America%2FLos_Angeles&forecast_days=3
   meteo_request <-
     request("https://api.open-meteo.com/v1/forecast") |>
     req_user_agent("Mozilla/5.0") |>
@@ -22,8 +24,9 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     req_headers("Connection" = "Keep-Alive") |>
     req_url_query(latitude = "45.5234") |>
     req_url_query(longitude = "-122.6762") |>
-    req_url_query(current = "precipitation") |>
-    req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
+    # req_url_query(current = "precipitation") |>
+    # req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
+    req_url_query(daily="precipitation_sum,et0_fao_evapotranspiration&timezone=America%2FLos_Angeles&forecast_days=3") |>
     req_retry(retry_on_failure = TRUE, max_tries = 4)
 
     try(
