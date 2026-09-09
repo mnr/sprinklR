@@ -22,19 +22,20 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     req_user_agent("Mozilla/5.0") |>
     req_headers("Accept-Encoding" = "identity") |>
     req_headers("Connection" = "Keep-Alive") |>
-    req_url_query(latitude = "45.5234") |>
-    req_url_query(longitude = "-122.6762") |>
-    # req_url_query(current = "precipitation") |>
-    # req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
-    req_url_query(daily="precipitation_sum,et0_fao_evapotranspiration") |>
-    req_url_query(timezone="America%2FLos_Angeles") |>
-    req_url_query(forecast_days="3") |>
+    req_url_query("latitude" = "45.5234") |>
+    req_url_query("longitude" = "-122.6762") |>
+    req_url_query("daily" = "precipitation_sum,et0_fao_evapotranspiration") |>
+    req_url_query("timezone" = "America%2FLos_Angeles") |>
+    req_url_query("forecast_days" = "3") |>
     req_retry(retry_on_failure = TRUE, max_tries = 4)
 
     try(
       meteo_response <- req_perform(meteo_request) |>
       resp_body_json()
     )
+
+  # req_url_query(current = "precipitation") |>
+  # req_url_query(daily = "precipitation_sum,precipitation_probability_max,et0_fao_evapotranspiration") |>
 
   # meteo_response$current$precipitation
   # meteo_response$daily$precipitation_sum[[1]]
