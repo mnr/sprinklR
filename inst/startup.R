@@ -1,7 +1,6 @@
 # startup script. Runs at boot
 
 # install.packages("httr2")
-# install.packages("devtools")
 # install.packages("rpigpior")
 
 library(httr2)
