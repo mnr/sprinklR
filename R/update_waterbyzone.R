@@ -29,20 +29,6 @@ update_waterbyzone <- function(waterByZone, yearDay) {
     req_url_query("forecast_days" = "3") |>
     req_retry(retry_on_failure = TRUE, max_tries = 4)
 
-    # try(
-    #   { meteo_response <- req_perform(meteo_request) |> resp_body_json()
-    #
-    #   # next, store forecast
-    #   for (index in 1:length(meteo_response$daily$time)) {
-    #     yearDayFloat <- as.POSIXlt(meteo_response$daily$time[[index]])$yday
-    #     waterByZone["rainfall", yearDayFloat] <-
-    #       meteo_response$daily$precipitation_sum[[index]]
-    #     waterByZone["evapotranspiration", yearDayFloat] <-
-    #       meteo_response$daily$et0_fao_evapotranspiration[[index]]
-    #   }
-    #   }
-    # )
-
   tryCatch({
     meteo_response <- req_perform(meteo_request) |> resp_body_json()
 
