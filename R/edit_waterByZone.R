@@ -82,6 +82,8 @@ edit_waterByZone <- function() {
   mmWaterPerWeekRear <- as.numeric(readline("How many mm of water per week in rear zone: "))
 
   # confirm this is correct
+  print("")
+  print("===== Summary of new values =====")
   print(paste("Irrigation will start on",format(as.POSIXlt(last_frost_date), format = "%B %e")))
   print(paste("Irrigation will end on",format(as.POSIXlt(first_frost_date), format = "%B %e")))
   print(paste("The front zone will receive",mmWaterPerWeekFront,"mm",
