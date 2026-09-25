@@ -94,7 +94,7 @@ edit_waterByZone <- function() {
     waterByZone["neededInFront", ] <- c(
       rep(0, last_frost),
       rep_len(
-        c(mmWaterPerWeek / 2, 0,0,0, mmWaterPerWeek / 2, 0, 0),
+        c(mmWaterPerWeekFront / 2, 0,0,0, mmWaterPerWeekFront / 2, 0, 0),
         first_frost - last_frost
       ),
       rep(0, 366 - first_frost)
@@ -102,7 +102,7 @@ edit_waterByZone <- function() {
     waterByZone["neededInRear", ] <- c(
       rep(0, last_frost),
       rep_len(
-        c(0, mmWaterPerWeek / 2, 0, 0, 0, mmWaterPerWeek / 2, 0),
+        c(0, mmWaterPerWeekRear / 2, 0, 0, 0, mmWaterPerWeekRear / 2, 0),
         first_frost - last_frost
       ),
       rep(0, 366 - first_frost)
