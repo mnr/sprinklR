@@ -110,8 +110,7 @@ edit_waterByZone <- function() {
       rep(0, 366 - first_frost)
     )
     # save the updated waterbyzone
-    ##### saveRDS(waterByZone, whereIsWBZ)
-    print("saving the results is currently disabled for testing")
+    saveRDS(waterByZone, whereIsWBZ)
   } else {
     print("To correct these values, please restart edit_waterByZone()")
   }
